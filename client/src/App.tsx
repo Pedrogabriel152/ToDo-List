@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import style from './App.module.css';
 import Logo from './Components/Logo';
 import Form from './Components/From';

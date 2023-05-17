@@ -4,6 +4,8 @@ import React, { ChangeEvent, useState } from "react";
 import IForm from "../../Interfaces/IForm";
 import Input from "../Input";
 
+// Icons 
+import { GrAddCircle } from 'react-icons/gr';
 
 const Form = ({task, text}: IForm) => {
     const [newTask, setNewTask] = useState<any>({});
@@ -13,13 +15,17 @@ const Form = ({task, text}: IForm) => {
     }
 
     return(
+        <>
         <Input 
-            className=""
+            className="create"
             handleOnChange={handleOnChange}
-            name=""
-            type=""
+            name="descricao"
+            type="text"
             value=""
+            placeholder="Crie uma nova tarefa"        
         />
+
+        </>
     );
 }
 
