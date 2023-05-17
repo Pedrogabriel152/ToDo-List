@@ -24,8 +24,7 @@ const Input = ({handleOnChange, name, type, value, className, placeholder}:IInpu
         <button type="submit"  className={style.iconAdd}>{className == 'create'
             ? (
                 <>
-                Criar
-                <IoIosAddCircleOutline size={30} color="#FFF" />
+                Criar<IoIosAddCircleOutline size={30} color="#FFF" />
                 </>
             ) : (
                 <>

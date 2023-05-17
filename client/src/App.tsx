@@ -10,7 +10,7 @@ function App() {
   return (
     <div className={style.App}>
       <Logo />
-      <Form text='Criar'/>
+      <Form text='Criar' classname='create'/>
     </div>
   );
 }

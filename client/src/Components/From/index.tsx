@@ -7,7 +7,7 @@ import Input from "../Input";
 // Icons 
 import { GrAddCircle } from 'react-icons/gr';
 
-const Form = ({task, text}: IForm) => {
+const Form = ({task, text, classname}: IForm) => {
     const [newTask, setNewTask] = useState<any>({});
 
     const handleOnChange = (e:ChangeEvent<HTMLInputElement>) => {
@@ -17,12 +17,12 @@ const Form = ({task, text}: IForm) => {
     return(
         <>
         <Input 
-            className="create"
+            className={classname}
             handleOnChange={handleOnChange}
             name="descricao"
             type="text"
-            value=""
-            placeholder="Crie uma nova tarefa"        
+            value={task? task : newTask? newTask.descricao : ''}
+            placeholder={classname === 'create'? 'Criar uma novas tarefa' : 'Editar a tarefa'}       
         />
 
         </>
