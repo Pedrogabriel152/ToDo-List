@@ -4,8 +4,6 @@ import React, { ChangeEvent, useState } from "react";
 import IForm from "../../Interfaces/IForm";
 import Input from "../Input";
 
-// Icons 
-import { GrAddCircle } from 'react-icons/gr';
 
 const Form = ({task, text, classname}: IForm) => {
     const [newTask, setNewTask] = useState<any>({});
