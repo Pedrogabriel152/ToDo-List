@@ -14,5 +14,17 @@ extend type Query{
 }
 
 extend type Mutation{
-  createTask(descricao: String!): Task! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@createTask")
+  createTask(descricao: String!): AddTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@createTask")
+}
+
+interface respostaCustom {
+  # Tipo abstrato
+  code: Int!
+  message: String!
+}
+
+type AddTask implements respostaCustom {
+  code: Int!
+  message: String!
+  task:Task
 }

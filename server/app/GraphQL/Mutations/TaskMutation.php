@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Http\Controllers\API\TaskController;
 use App\Models\Task;
 
 final class TaskMutation
@@ -16,13 +17,8 @@ final class TaskMutation
     }
 
     public function createTask($_, array $args) {
-        $atributos = json_encode($args);
-
-        // dd($atributos);
-        $task = new Task();
-        $task->descricao = 'Limpar a casa';
-        $task->status = false;
+        $resposta = TaskController::create($args['descricao']);
         
-        return $task;
+        return $resposta;
     }
 }
