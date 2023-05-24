@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Models\Task;
-use App\Services\TaskService;
 use Illuminate\Support\Facades\DB;
 
 class TaskRepository {
@@ -31,8 +30,14 @@ class TaskRepository {
     public static function getTasks() {
         return DB::transaction(function (){
             $tasks = Task::orderBy('status', 'asc')->get();
+            $tasksClose = Task::where([['status','=',true]])->get();
+            $total = count($tasks);
 
-            return $tasks;
+            return [
+                'tasks' => $tasks,
+                'close' => count($tasksClose),
+                'total' => $total
+            ];
         });
     }
 
@@ -59,5 +64,41 @@ class TaskRepository {
                 "task" => $updateTask
             ];
         });
+    }
+
+    public static function deleteTask(array $data){
+        return DB::transaction(function () use ($data){
+            $deleteTask = Task::whereId($data['id'])->first();
+
+            if(!$deleteTask){
+                return [
+                    'code' => 404,
+                    'message' => 'Tarefa não encontrada'
+                ];
+            }
+
+            $deleteTask->delete();
+            return [
+                'code' => 200,
+                'message' => "Tarefa excluida com sucesso"
+            ];
+        });
+    }
+
+    public static function getTask(int $id){
+        $task = Task::whereId($id)->first();
+
+        if(!$task){
+            return [
+                'code' => 404,
+                'message' => 'Tarefa não encontrada'
+            ];
+        }
+
+        return [
+            'code' => 200,
+            'message' => "Tarefa encontrada com sucesso",
+            "task" => $task
+        ];
     }
 }

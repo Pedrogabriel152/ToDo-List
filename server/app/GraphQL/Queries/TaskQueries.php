@@ -19,4 +19,9 @@ final class TaskQueries
         $tasks = TaskRepository::getTasks();
         return $tasks;
     }
+
+    public function getTask($_, array $args){
+        $response = TaskRepository::getTask($args['id']);
+        return $response;
+    }
 }

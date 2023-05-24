@@ -16,12 +16,17 @@ final class TaskMutation
     }
 
     public function createTask($_, array $args) {
-        $resposta = TaskRepository::create($args['descricao']);
-        return $resposta;
+        $response = TaskRepository::create($args['descricao']);
+        return $response;
     }
 
     public function updateTask($_, array $args){
         $response = TaskRepository::updateTask($args);
+        return $response;
+    }
+
+    public function deleteTask($_, array $args){
+        $response = TaskRepository::deleteTask($args);
         return $response;
     }
 }

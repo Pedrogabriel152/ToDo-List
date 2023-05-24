@@ -14,13 +14,21 @@ input TaskInput {
   status: Boolean
 }
 
+type ResponGetTask{
+  tasks: [Task]
+  close: Int!
+  total: Int!
+}
+
 extend type Query{
-  tasks: [Task] @field(resolver: "App\\GraphQL\\Queries\\TaskQueries@getTasks")
+  dados: ResponGetTask! @field(resolver: "App\\GraphQL\\Queries\\TaskQueries@getTasks")
+  task(id: ID!): SucessTask! @field(resolver: "App\\GraphQL\\Queries\\TaskQueries@getTask")
 }
 
 extend type Mutation{
   createTask(descricao: String!): SucessTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@createTask")
   updateTask(id: ID!, task: TaskInput): SucessTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@updateTask")
+  deleteTask(id: ID!): DeleteTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@deleteTask")
 }
 
 interface respostaCustom {
@@ -33,4 +41,9 @@ type SucessTask implements respostaCustom {
   code: Int!
   message: String!
   task:Task
+}
+
+type DeleteTask implements respostaCustom {
+  code: Int!
+  message: String!
 }
