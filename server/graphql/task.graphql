@@ -9,12 +9,18 @@ type Task {
   updated_at: DateTime!
 }
 
+input TaskInput {
+  descricao: String
+  status: Boolean
+}
+
 extend type Query{
   tasks: [Task] @field(resolver: "App\\GraphQL\\Queries\\TaskQueries@getTasks")
 }
 
 extend type Mutation{
-  createTask(descricao: String!): AddTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@createTask")
+  createTask(descricao: String!): SucessTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@createTask")
+  updateTask(id: ID!, task: TaskInput): SucessTask! @field(resolver: "App\\GraphQL\\Mutations\\TaskMutation@updateTask")
 }
 
 interface respostaCustom {
@@ -23,7 +29,7 @@ interface respostaCustom {
   message: String!
 }
 
-type AddTask implements respostaCustom {
+type SucessTask implements respostaCustom {
   code: Int!
   message: String!
   task:Task

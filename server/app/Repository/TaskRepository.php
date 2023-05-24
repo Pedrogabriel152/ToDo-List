@@ -35,4 +35,29 @@ class TaskRepository {
             return $tasks;
         });
     }
+
+    public static function updateTask(array $data){
+        return DB::transaction(function () use ($data){
+            $updateTask = Task::whereId($data['id'])->first();
+
+            if(!$updateTask){
+                return [
+                    'code' => 404,
+                    'message' => 'Tarefa não encontrada'
+                ];
+            }
+
+            if(array_key_exists('status', $data['task'])){
+                $updateTask->status = $data['task']['status'];
+            }
+            
+            $updateTask->descricao = $data['task']['descricao'];
+            $updateTask->save();
+            return [
+                'code' => 200,
+                'message' => "Tarefa atualizada com sucesso",
+                "task" => $updateTask
+            ];
+        });
+    }
 }

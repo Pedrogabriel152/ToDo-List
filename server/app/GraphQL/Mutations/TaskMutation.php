@@ -17,7 +17,11 @@ final class TaskMutation
 
     public function createTask($_, array $args) {
         $resposta = TaskRepository::create($args['descricao']);
-        
         return $resposta;
+    }
+
+    public function updateTask($_, array $args){
+        $response = TaskRepository::updateTask($args);
+        return $response;
     }
 }
