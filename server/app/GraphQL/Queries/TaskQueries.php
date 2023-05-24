@@ -2,7 +2,7 @@
 
 namespace App\GraphQL\Queries;
 
-use App\Models\Task;
+use App\Repository\TaskRepository;
 
 final class TaskQueries
 {
@@ -16,12 +16,7 @@ final class TaskQueries
     }
 
     public function getTasks($_, array $args){
-        $task = new Task();
-        $task->descricao = 'Limpar a casa';
-        $task->status = false;
-        
-        return [
-            $task,
-        ];
+        $tasks = TaskRepository::getTasks();
+        return $tasks;
     }
 }

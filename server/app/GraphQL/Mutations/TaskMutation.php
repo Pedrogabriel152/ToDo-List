@@ -2,8 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Http\Controllers\API\TaskController;
-use App\Models\Task;
+use App\Repository\TaskRepository;
 
 final class TaskMutation
 {
@@ -17,7 +16,7 @@ final class TaskMutation
     }
 
     public function createTask($_, array $args) {
-        $resposta = TaskController::create($args['descricao']);
+        $resposta = TaskRepository::create($args['descricao']);
         
         return $resposta;
     }
