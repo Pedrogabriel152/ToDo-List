@@ -1,0 +1,31 @@
+.info{
+    width: 58vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #7c7c7c;
+}
+
+.total{
+    color: #4EA8DE;
+}
+
+.close {
+    color: #5E60CE;
+}
+
+.info .total span,
+.info .close span {
+    padding: 2px 8px;
+    background: #333333;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    color: #D9D9D9;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

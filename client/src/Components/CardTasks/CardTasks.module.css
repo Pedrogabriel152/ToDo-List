@@ -1,0 +1,45 @@
+.tasks{
+    display: flex;
+    width: 55vw;
+    margin: 0 auto;
+    margin-top: .8em;
+    padding: 19px;
+    background-color: #262626;
+    border-radius: 10px;
+}
+
+.tasks .input {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    border: 2px solid #5E60CE;
+    text-align: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.tasks .descricao {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    height: 40px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: #F2F2F2;
+    margin-left: 3%;
+    margin-right: 2%;   
+}
+
+.tasks .icons {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.tasks .icons .first {
+    margin-right: .4em;
+}

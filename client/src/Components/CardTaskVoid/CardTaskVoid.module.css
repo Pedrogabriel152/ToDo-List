@@ -1,0 +1,19 @@
+.card {
+    width: 58vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+.card .title {
+    color: #8a8989;
+    margin-top: 1em;
+    margin-bottom: .2em;
+}
+
+.card .text {
+    color: #616060;
+}

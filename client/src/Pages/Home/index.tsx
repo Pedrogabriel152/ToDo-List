@@ -4,6 +4,8 @@ import { useTaskContext } from '../../Context/TaskContext';
 import Logo from '../../Components/Logo';
 import Form from '../../Components/Form';
 import InformacoesTasks from '../../Components/InformacoesTasks';
+import CardTaskVoid from '../../Components/CardTaskVoid';
+import CardTasks from '../../Components/CardTasks';
 
 function Home() {
   const {tasks} = useTaskContext();
@@ -20,6 +22,8 @@ function Home() {
           total={tasks?.total? tasks?.total : 0}
           close={tasks?.close? tasks?.close : 0}
         />
+        {!tasks?.total && <CardTaskVoid />}
+        {tasks?.total && tasks?.total > 0 && <CardTasks tasks={tasks?.tasks? tasks?.tasks : []}/>}
     </div>
   );
 }
