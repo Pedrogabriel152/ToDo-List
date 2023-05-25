@@ -4,7 +4,7 @@ import React from "react";
 import style from './Input.module.css';
 
 // Interface
-import IInput from "../../Interfaces/IIpunt";
+import IInput from "../../Interface/IInput";
 
 // Icons
 import { IoIosAddCircleOutline } from "react-icons/io";
@@ -19,19 +19,7 @@ const Input = ({handleOnChange, name, type, value, className, placeholder}:IInpu
             value={value? value : ''} 
             className={style[className]}
             placeholder={placeholder}
-        />
-
-        <button type="submit"  className={className === 'create'? style.iconAdd : style.edit}>{className === 'create'
-            ? (
-                <>
-                Criar<IoIosAddCircleOutline size={30} color="#FFF" />
-                </>
-            ) : (
-                <>
-                ''
-                </>
-            )
-        }</button>
+        />        
         </>
 
         
