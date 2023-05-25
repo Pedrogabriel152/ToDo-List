@@ -1,21 +1,16 @@
-import React, { ChangeEvent, useState } from 'react';
-import style from './App.module.css';
-import Logo from './Components/Logo';
-import Form from './Components/From';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ABApolloClient from './Components/ApolloClient';
 import TaskProvaider from './Context/TaskContext';
+import Rotas from './routes';
 
 function App() {
-  const [tasks, setTasks] = useState<any>({});
-  const [totalTasks, setTotalTasks] = useState<number>(0);
-
   return (
     <ABApolloClient>
       <TaskProvaider>
-        <div className={style.App}>
-          <Logo />
-          <Form text='Criar' classname='create'/>
-        </div>
+        <BrowserRouter>
+          <Rotas />
+        </BrowserRouter>
       </TaskProvaider>
     </ABApolloClient>
   );

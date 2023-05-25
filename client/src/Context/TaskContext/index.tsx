@@ -1,7 +1,13 @@
 import { ReactElement, createContext, useContext } from "react";
 import { ITask } from "../../Interface/ITask";
+import { IGetTasks } from "../../Interface/IGetTasks";
+import { useReactiveVar } from "@apollo/client";
+import { tasksVar } from "../../GraphQL/Task/state";
+import { useTasks } from "../../GraphQL/Task/hooks";
+import { ITasks } from "../../Interface/ITasks";
 
 export interface ITaskContext{
+    tasks?: ITasks
     createTaskBanco: (item: ITask) => void
     deleteTaskBanco: (item: ITask) => void
     carregando: boolean
@@ -18,6 +24,16 @@ interface TaskProvaiderProps {
 }
 
 const TaskProvaider = ({children}:TaskProvaiderProps) => {
+    const tasks: ITasks = {
+        close: 0,
+        tasks: [],
+        total:  0
+        
+    }
+
+    const {loading: loadTasks} = useTasks();
+
+    const data = useReactiveVar(tasksVar);
 
     // const [adicionaItem, { loading: loadAdicona}] = useAdicionaItem();
     // const [removeItem] = useRemoveItem();
@@ -57,9 +73,10 @@ const TaskProvaider = ({children}:TaskProvaiderProps) => {
     return (
         <taskContext.Provider 
             value={{
+                tasks: data? data : tasks,
                 createTaskBanco: createTask, 
                 deleteTaskBanco: deleteTask, 
-                carregando: false
+                carregando: loadTasks 
             }} 
         >
             {children}
@@ -67,7 +84,7 @@ const TaskProvaider = ({children}:TaskProvaiderProps) => {
     );
 }
 
-export const useCarrinhoContext = () => {
+export const useTaskContext = () => {
     return useContext<ITaskContext>(taskContext);
 }
 

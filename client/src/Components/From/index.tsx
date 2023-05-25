@@ -9,7 +9,7 @@ const Form = ({task, text, classname}: IForm) => {
     const [newTask, setNewTask] = useState<any>({});
 
     const handleOnChange = (e:ChangeEvent<HTMLInputElement>) => {
-    
+        
     }
 
     return(

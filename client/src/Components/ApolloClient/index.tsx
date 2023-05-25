@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: 'http://localhost/graphql-playground'
+    uri: 'http://localhost/graphql'
 });
 
 
