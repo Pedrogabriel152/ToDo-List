@@ -19,6 +19,12 @@
     border-radius: 50%;
 }
 
+/* .tasks .check {
+    border: none;
+    width: auto;
+    height: 22px;
+} */
+
 .tasks .descricao {
     display: flex;
     align-items: center;
@@ -33,6 +39,11 @@
     margin-left: 3%;
     margin-right: 2%;   
 }
+
+/* .tasks .concluida{
+    text-decoration: line-through;
+    color: #808080;
+} */
 
 .tasks .icons {
     display: flex;

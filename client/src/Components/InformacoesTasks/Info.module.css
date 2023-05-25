@@ -16,10 +16,10 @@
     color: #5E60CE;
 }
 
-.info .total span,
-.info .close span {
+.info .total .span,
+.info .close .span {
     padding: 2px 8px;
-    background: #333333;
+    background: #131212;
     border-radius: 999px;
     font-weight: 700;
     font-size: 14px;
