@@ -6,7 +6,7 @@ import style from '../Form/Form.module.css';
 import { IButton } from "../../Interface/IButton";
 
 
-const Button = ({className, onclick}: IButton) => {
+const Button = ({className, onclick, text}: IButton) => {
     return(
         <>
         <button 
@@ -14,17 +14,8 @@ const Button = ({className, onclick}: IButton) => {
             className={className === 'create'? style.iconAdd : style.edit}
             onClick={onclick}
         >
-            {className === 'create'
-            ? (
-                <>
-                Criar<IoIosAddCircleOutline size={30} color="#FFF" />
-                </>
-            ) : (
-                <>
-                ''
-                </>
-            )
-        }</button>
+            {text}<IoIosAddCircleOutline size={30} color="#FFF" />
+        </button>
 
         </>
     );

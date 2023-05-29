@@ -39,3 +39,16 @@
     justify-content: center;
     font-size: 1em;
 }
+.edit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 54px;
+    width: 250px;
+    background-color: #1E6F9F;
+    color: #FFF;
+    margin-left: 3em;
+    border-radius: 8px;
+    justify-content: center;
+    font-size: 1em;
+}

@@ -40,10 +40,10 @@
     margin-right: 2%;   
 }
 
-/* .tasks .concluida{
+.tasks .concluida{
     text-decoration: line-through;
     color: #808080;
-} */
+}
 
 .tasks .icons {
     display: flex;

@@ -38,3 +38,12 @@ export const DELETE_TASK = gql`
             }
         }
 `;
+
+export const EDIT_TASK = gql`
+    mutation UpdateTask($id: ID!, $task: TaskInput){
+        updateTask(id: $id, task: $task){
+            code
+            message
+        }
+    }
+`;

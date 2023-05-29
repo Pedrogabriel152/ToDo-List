@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { IGetTasks } from "../../Interface/IGetTasks";
-import { CREATE_TASK, DELETE_TASK, OBTER_TASKS } from "./queries";
-import { createTasksVar, deleteTasksVar, tasksVar } from "./state";
+import { CREATE_TASK, DELETE_TASK, EDIT_TASK, OBTER_TASKS } from "./queries";
+import { createTasksVar, deleteTasksVar, tasksVar, updateTasksVar } from "./state";
 import { ITask } from "../../Interface/ITask";
 import { ITasks } from "../../Interface/ITasks";
 import { ICreateTask } from "../../Interface/ICreateTask";
@@ -44,15 +44,15 @@ export const useDeleteTask = () => {
     });
 };
 
-// export const useRemoveItem = () => {
-//     return useMutation<{adicionarItem: boolean}>(REMOVE_ITEM_CARRINHO,{
-//         onCompleted(data) {
-//             if(data?.adicionarItem){
-//                 adicionaCarrinhoVar(data?.adicionarItem)
-//             }
-//         },
-//         refetchQueries: [
-//             'ObeterCarrinho'
-//         ]
-//     });
-// };
+export const useUpdateTask = () => {
+    return useMutation<{updateTask: ICreateTask}>(EDIT_TASK,{
+        onCompleted(data) {
+            if(data){
+                updateTasksVar(data?.updateTask)
+            }
+        },
+        refetchQueries: [
+            'GetTasks'
+        ]
+    });
+};

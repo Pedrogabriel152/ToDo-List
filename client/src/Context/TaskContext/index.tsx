@@ -3,19 +3,21 @@ import { ITask } from "../../Interface/ITask";
 import { IGetTasks } from "../../Interface/IGetTasks";
 import { useReactiveVar } from "@apollo/client";
 import { tasksVar } from "../../GraphQL/Task/state";
-import { useCreateTask, useDeleteTask, useTasks } from "../../GraphQL/Task/hooks";
+import { useCreateTask, useDeleteTask, useTasks, useUpdateTask } from "../../GraphQL/Task/hooks";
 import { ITasks } from "../../Interface/ITasks";
 
 export interface ITaskContext{
     tasks?: ITasks
     createTaskBanco: (descricao: string) => void
     deleteTaskBanco: (item: ITask) => void
+    editTask: (item: ITask) => void
     carregando: boolean
 }
 
 export const taskContext = createContext<ITaskContext>({
     createTaskBanco: () => null,
     deleteTaskBanco: () => null,
+    editTask: () => null,
     carregando: false
 });
 
@@ -37,6 +39,7 @@ const TaskProvaider = ({children}:TaskProvaiderProps) => {
 
     const [adicionaTask, { loading: loadAdicona}] = useCreateTask();
     const [removeTask] = useDeleteTask();
+    const [updateTask] = useUpdateTask();
     // const [removeItem] = useRemoveItem();
 
     const createTask = (descricao: string) => {
@@ -56,12 +59,25 @@ const TaskProvaider = ({children}:TaskProvaiderProps) => {
         })
     }
 
+    const editTask = (task: ITask) => {
+        updateTask({
+            variables: {
+                id: task.id,
+                task: {
+                    descricao: task.descricao,
+                    status: task.status
+                }
+            }
+        })
+    }
+
     return (
         <taskContext.Provider 
             value={{
                 tasks: data? data : tasks,
                 createTaskBanco: createTask, 
                 deleteTaskBanco: deleteTask, 
+                editTask: editTask,
                 carregando: loadTasks 
             }} 
         >

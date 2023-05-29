@@ -8,22 +8,46 @@ import CardTaskVoid from '../../Components/CardTaskVoid';
 import CardTasks from '../../Components/CardTasks';
 import { ITask } from '../../Interface/ITask';
 import { useReactiveVar } from '@apollo/client';
-import { deleteTasksVar } from '../../GraphQL/Task/state';
+import { deleteTasksVar, updateTasksVar } from '../../GraphQL/Task/state';
 import { toast } from 'react-toastify';
 
 function Home() {
-  const {tasks, deleteTaskBanco} = useTaskContext();
+  const {tasks, deleteTaskBanco, editTask} = useTaskContext();
   const response = useReactiveVar(deleteTasksVar);
+  const editResponse = useReactiveVar(updateTasksVar);
 
-  const handleEdit= (task: ITask) => {
-    
+  const handleEdit= (task: ITask, acao: string) => {
+    let updateTask: ITask = {
+      id: task.id,
+      descricao: task.descricao,
+      status: true
+    };
+    if(acao === 'close'){
+      editTask(updateTask);
+    }
+
+    if(acao === 'open'){
+      updateTask.status = false
+      editTask(updateTask);      
+    }
+
+    if(editResponse?.code != 200){
+      toast.error(editResponse?.message);
+      return;
+    }
+
+    toast.success(editResponse.message);
+    return;
   }
 
   const handleDelete = (task: ITask) => {
     deleteTaskBanco(task);
-    if(response){
-      toast.success(response.message);
+    if(response?.code != 200){
+      toast.error(response?.message);
+      return;
     }
+
+    toast.success(response.message);
   }
   
   return (
