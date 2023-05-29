@@ -10,11 +10,7 @@ final class TaskMutation
      * @param  null  $_
      * @param  array{}  $args
      */
-    public function __invoke($_, array $args)
-    {
-        // TODO implement the resolver
-    }
-
+    
     public function createTask($_, array $args) {
         $response = TaskRepository::create($args['descricao']);
         return $response;
