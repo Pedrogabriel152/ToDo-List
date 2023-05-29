@@ -15,3 +15,26 @@ export const OBTER_TASKS = gql`
         }
     }
 `;
+
+export const CREATE_TASK= gql`
+    mutation CreateTask($descricao: String!){
+        createTask(descricao: $descricao){
+            code
+            message
+            task{
+                id
+                descricao
+                status
+            }
+        }
+    }
+`;
+
+export const DELETE_TASK = gql`
+    mutation deleteTask($id: ID!){
+        deleteTask(id: $id){
+                code
+                message
+            }
+        }
+`;

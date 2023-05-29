@@ -3,12 +3,12 @@ import { ITask } from "../../Interface/ITask";
 import { IGetTasks } from "../../Interface/IGetTasks";
 import { useReactiveVar } from "@apollo/client";
 import { tasksVar } from "../../GraphQL/Task/state";
-import { useTasks } from "../../GraphQL/Task/hooks";
+import { useCreateTask, useDeleteTask, useTasks } from "../../GraphQL/Task/hooks";
 import { ITasks } from "../../Interface/ITasks";
 
 export interface ITaskContext{
     tasks?: ITasks
-    createTaskBanco: (item: ITask) => void
+    createTaskBanco: (descricao: string) => void
     deleteTaskBanco: (item: ITask) => void
     carregando: boolean
 }
@@ -35,39 +35,25 @@ const TaskProvaider = ({children}:TaskProvaiderProps) => {
 
     const data = useReactiveVar(tasksVar);
 
-    // const [adicionaItem, { loading: loadAdicona}] = useAdicionaItem();
+    const [adicionaTask, { loading: loadAdicona}] = useCreateTask();
+    const [removeTask] = useDeleteTask();
     // const [removeItem] = useRemoveItem();
 
-    const createTask = (item: ITask) => {
-        // const newItem: ITask = {
-        //     livroId: item.livro.id,
-        //     opcaoCompraId: item.opcaoCompra.id,
-        //     quantidade: item.quantidade
-        // }
+    const createTask = (descricao: string) => {
 
-        // console.log('New item',newItem)
-
-        // adicionaItem({
-        //     variables: {
-        //         item: newItem
-        //     }
-        // })
-        console.log(`[CarrinhoProvaider] - adicionarItemCarrinho`, item)
+        adicionaTask({
+            variables: {
+                descricao: descricao
+            }
+        })
     }
 
     const deleteTask = (item: ITask) => {
-        // const newItem: ITask = {
-        //     livroId: item.livro.id,
-        //     opcaoCompraId: item.opcaoCompra.id,
-        //     quantidade: item.quantidade
-        // }
-
-        // removeItem({
-        //     variables: {
-        //         item: newItem
-        //     }
-        // })
-        console.log(`[CarrinhoProvaider] - removerItemCarrinho`, item)
+        removeTask({
+            variables: {
+                id: item.id
+            }
+        })
     }
 
     return (

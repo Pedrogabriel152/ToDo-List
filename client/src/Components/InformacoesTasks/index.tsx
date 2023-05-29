@@ -8,7 +8,6 @@ interface InformacoesTasksProps {
 
 const InformacoesTasks = ({total, close}: InformacoesTasksProps) => {
     const {tasks, carregando} = useTaskContext();
-    console.log('InformacoesTasks ', close)
     return(
         <section>
             <div className={style.info}>

@@ -6,12 +6,24 @@ import Form from '../../Components/Form';
 import InformacoesTasks from '../../Components/InformacoesTasks';
 import CardTaskVoid from '../../Components/CardTaskVoid';
 import CardTasks from '../../Components/CardTasks';
+import { ITask } from '../../Interface/ITask';
+import { useReactiveVar } from '@apollo/client';
+import { deleteTasksVar } from '../../GraphQL/Task/state';
+import { toast } from 'react-toastify';
 
 function Home() {
-  const {tasks} = useTaskContext();
+  const {tasks, deleteTaskBanco} = useTaskContext();
+  const response = useReactiveVar(deleteTasksVar);
 
-  const handleOnSubmit = () => {
+  const handleEdit= (task: ITask) => {
+    
+  }
 
+  const handleDelete = (task: ITask) => {
+    deleteTaskBanco(task);
+    if(response){
+      toast.success(response.message);
+    }
   }
   
   return (
@@ -23,7 +35,7 @@ function Home() {
           close={tasks?.close? tasks?.close : 0}
         />
         {!tasks?.total && <CardTaskVoid />}
-        {tasks?.total && tasks?.total > 0 && <CardTasks tasks={tasks?.tasks? tasks?.tasks : []}/>}
+        {tasks?.total && tasks?.total > 0 && <CardTasks tasks={tasks?.tasks? tasks?.tasks : []} deleteTask={handleDelete} editTask={handleEdit}/>}
     </div>
   );
 }
