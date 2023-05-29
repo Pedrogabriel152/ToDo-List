@@ -1,5 +1,3 @@
-import React, { ChangeEvent, useState } from "react";
-
 // Interface
 import { IoIosAddCircleOutline } from "react-icons/io";
 import style from '../Form/Form.module.css';

@@ -1,6 +1,5 @@
 import { ReactElement, createContext, useContext } from "react";
 import { ITask } from "../../Interface/ITask";
-import { IGetTasks } from "../../Interface/IGetTasks";
 import { useReactiveVar } from "@apollo/client";
 import { tasksVar } from "../../GraphQL/Task/state";
 import { useCreateTask, useDeleteTask, useTasks, useUpdateTask } from "../../GraphQL/Task/hooks";

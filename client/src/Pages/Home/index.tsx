@@ -1,4 +1,3 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
 import style from './Home.module.css';
 import { useTaskContext } from '../../Context/TaskContext';
 import Logo from '../../Components/Logo';

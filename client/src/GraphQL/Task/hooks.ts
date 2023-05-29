@@ -1,8 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { IGetTasks } from "../../Interface/IGetTasks";
 import { CREATE_TASK, DELETE_TASK, EDIT_TASK, OBTER_TASKS } from "./queries";
 import { createTasksVar, deleteTasksVar, tasksVar, updateTasksVar } from "./state";
-import { ITask } from "../../Interface/ITask";
 import { ITasks } from "../../Interface/ITasks";
 import { ICreateTask } from "../../Interface/ICreateTask";
 import { IDeleteTask } from "../../Interface/IDeleteTask";

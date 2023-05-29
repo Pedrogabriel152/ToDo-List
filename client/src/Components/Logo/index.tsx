@@ -1,5 +1,3 @@
-import React from "react";
-
 // Icons
 import { BsRocket } from 'react-icons/bs';
 
